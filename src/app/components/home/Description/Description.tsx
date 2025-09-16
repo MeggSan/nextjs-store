@@ -1,25 +1,41 @@
-import styles from "./Description.module.sass";
+"use client";
+
+import { useState } from "react";
+import classNames from "classnames/bind";
 import Image from "next/image";
+import styles from "./Description.module.sass";
 
 const PLACEHOLDER_IMAGE =
   "data:image/jpeg;base64,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";
 
 export const Description = () => {
+  const [hasBorder, setHasBorder] = useState(false);
+
+  const handleClick = () => setHasBorder(!hasBorder);
+
+  const cx = classNames.bind(styles);
+
+  const buttonStyles = cx("Description__button", {
+    "Description__button--border": hasBorder,
+  });
+
   return (
     <section className={styles.Description}>
-      <div className={styles.Description__imageContainer}>
-        <Image
-          src="/images/description.jpeg"
-          alt="Products Marketplace"
-          // width={500}
-          // height={300}
-          // priority={true}
-          // quality={50}
-          fill
-          placeholder="blur"
-          blurDataURL={PLACEHOLDER_IMAGE}
-        />
-      </div>
+      <button className={buttonStyles} onClick={handleClick}>
+        <div className={styles.Description__imageContainer}>
+          <Image
+            src="/images/description.jpeg"
+            alt="Products Marketplace"
+            // width={500}
+            // height={300}
+            // priority={true}
+            // quality={50}
+            fill
+            placeholder="blur"
+            blurDataURL={PLACEHOLDER_IMAGE}
+          />
+        </div>
+      </button>
       <div className={styles.Description__text}>
         <h2>Bring the future today</h2>
         <p>
