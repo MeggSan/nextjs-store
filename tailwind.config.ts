@@ -9,8 +9,16 @@ const config: Config = {
   theme: {
     extend: {
       colors: {
+        primary: "#13111a", // $color-primary
+        secondary: "#e4e1f6", // $color-secondary
+        border: "#302c3f", // $border-color
+        text: "#ffffff", // $text-color
+        mainContrast: "#ff4980", // $main-contrast
         background: "var(--background)",
         foreground: "var(--foreground)",
+      },
+      backgroundImage: {
+        gradientPrimary: "linear-gradient(270deg, #4f56ff, #ff4980)", // $gradient
       },
     },
   },
