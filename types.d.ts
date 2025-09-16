@@ -105,3 +105,8 @@ export enum WeightUnit {
 export enum Vendor {
   FutureWorld = "Future World",
 }
+
+export interface ErrorProps {
+  error: Error;
+  reset: () => void;
+}
