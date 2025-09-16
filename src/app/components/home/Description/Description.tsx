@@ -33,6 +33,7 @@ export const Description = () => {
             fill
             placeholder="blur"
             blurDataURL={PLACEHOLDER_IMAGE}
+            sizes="(max-width: 768px) 100vw, 500px"
           />
         </div>
       </button>
