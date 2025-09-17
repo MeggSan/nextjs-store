@@ -1,5 +1,5 @@
-import { Hero } from "app/components/home/Hero";
-import { Description } from "app/components/home/Description";
+import { Hero } from "components/home/Hero";
+import { Description } from "components/home/Description";
 
 export default function HomeLayout({
   children,
