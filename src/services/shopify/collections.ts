@@ -1,6 +1,7 @@
 import { shopifyUrls } from "./urls";
 import { env } from "config/env";
 import { Collection } from "../../../types";
+import { transformProducts } from "./products";
 
 export const getCollections = async () => {
   try {
@@ -33,7 +34,7 @@ export const getCollectionProducts = async (id: string) => {
       }),
     });
     const data = await response.json();
-    return data.products;
+    return transformProducts(data.products);
   } catch (error) {
     console.log("error", error);
   }
