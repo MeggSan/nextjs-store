@@ -1,5 +1,7 @@
 import Link from "next/link";
 import { getCollections } from "services/shopify/collections";
+import styles from "./StoreLayout.module.sass";
+import { Collection } from "../../../types";
 
 export default async function Layout({
   children,
@@ -9,12 +11,16 @@ export default async function Layout({
   const collections = await getCollections();
 
   return (
-    <main>
+    <main className={styles.StoreLayout}>
+      <h1>Explore</h1>
       <nav>
-        <ul>
-          {collections.map((collection) => (
-            <li key={collection.id}>
-              <Link href={`/store/${collection.handle}`}>
+        <ul className={styles.StoreLayout__list}>
+          {collections.map((collection: Collection) => (
+            <li key={collection.id} className={styles.StoreLayout__chip}>
+              <Link
+                href={`/store/${collection.handle}`}
+                className={styles.StoreLayout__chipText}
+              >
                 {collection.title}
               </Link>
             </li>
