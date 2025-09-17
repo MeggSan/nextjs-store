@@ -1,7 +1,3 @@
-export interface APIResults {
-  products: Product[];
-}
-
 export interface Product {
   id: number;
   title: string;
@@ -109,4 +105,37 @@ export enum Vendor {
 export interface ErrorProps {
   error: Error;
   reset: () => void;
+}
+
+export type ProductType = {
+  id: string;
+  title: string;
+  description: string;
+  price: number;
+  image: string;
+  quantity: number;
+  handle: string;
+  tags: string;
+};
+
+export interface CategoriesProps {
+  params: {
+    categories: string[];
+    searchParams: Record<string, string | string[] | undefined>; // OR { [key: string]: string | string[] | undefined }
+  };
+}
+
+export interface Collection {
+  id: number;
+  handle: string;
+  title: string;
+  updated_at: Date;
+  body_html: string;
+  published_at: Date;
+  sort_order: string;
+  template_suffix: string;
+  disjunctive: boolean;
+  rules: any[];
+  published_scope: string;
+  admin_graphql_api_id: string;
 }

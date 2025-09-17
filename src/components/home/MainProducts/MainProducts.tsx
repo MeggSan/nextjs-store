@@ -1,10 +1,11 @@
 import Image from "next/image";
 import { Product } from "../../../../types";
-import { getProducts } from "services/shopify";
+import { getProducts } from "services/shopify/products";
 import styles from "./MainProducts.module.sass";
 
 export const MainProducts = async () => {
-  const products = await getProducts();
+  const response = await fetch("http://localhost:3000/api");
+  const { products } = await response.json();
 
   return (
     <section className={styles.MainProducts}>

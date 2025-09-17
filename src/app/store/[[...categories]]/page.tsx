@@ -1,11 +1,10 @@
-interface CategoriesProps {
-  params: {
-    categories: string[];
-    searchParams: Record<string, string | string[] | undefined>; // OR { [key: string]: string | string[] | undefined }
-  };
-}
+import { ProductsWrapper } from "components/Store/ProductsWrapper";
+import { getProducts } from "services/shopify/products";
+import { CategoriesProps } from "../../../../types";
 
-export default function Categories(props: CategoriesProps) {
+export default async function Categories(props: CategoriesProps) {
   const { categories } = props.params;
-  return <h1>Dynamic categories: {categories}</h1>;
+  const products = await getProducts();
+
+  return <ProductsWrapper products={products} />;
 }
