@@ -110,10 +110,11 @@ export interface ErrorProps {
 export type ProductType = {
   id: string;
   title: string;
+  gql_id: string | null;
   description: string;
-  price: number;
+  price: number | null;
   image: string;
-  quantity: number;
+  quantity: number | null;
   handle: string;
   tags: string;
 };
@@ -139,3 +140,33 @@ export interface Collection {
   published_scope: string;
   admin_graphql_api_id: string;
 }
+
+export type CustomerCreateResponse = {
+  customerCreate: {
+    customer: {
+      firstName: string | null;
+      lastName: string | null;
+      email: string;
+      phone: string | null;
+    } | null;
+    customerUserErrors: {
+      field: string[] | null;
+      message: string;
+      code: string;
+    }[];
+  };
+};
+
+export type CustomerAccessTokenCreateResponse = {
+  customerAccessTokenCreate: {
+    customerAccessToken: {
+      accessToken: string;
+      expiresAt: string;
+    } | null;
+    customerUserErrors: {
+      field: string[] | null;
+      message: string;
+      code: string;
+    }[];
+  };
+};

@@ -1,6 +1,6 @@
 import { shopifyUrls } from "./urls";
 import { env } from "config/env";
-import { Collection } from "../../../types";
+import { Collection, ProductType } from "../../../types";
 import { transformProducts } from "./products";
 
 export const getCollections = async () => {
@@ -26,16 +26,22 @@ export const getCollections = async () => {
   }
 };
 
-export const getCollectionProducts = async (id: string) => {
+export const getCollectionProducts = async (
+  id: string
+): Promise<ProductType[]> => {
   try {
     const response = await fetch(shopifyUrls.collections.products(id), {
       headers: new Headers({
         "X-Shopify-Access-Token": env.SHOPIFY_TOKEN,
       }),
     });
+    if (!response.ok) {
+      throw new Error(`Error: ${response.status}`);
+    }
     const data = await response.json();
     return transformProducts(data.products);
   } catch (error) {
     console.log("error", error);
+    throw error;
   }
 };

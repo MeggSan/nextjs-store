@@ -4,7 +4,7 @@ import { FaCartShopping } from "react-icons/fa6";
 import styles from "./ProductViewItemsOrder.module.sass";
 
 interface ProductViewItemsOrderProps {
-  maxQuantity: number;
+  maxQuantity: number | null;
 }
 
 export const ProductViewItemsOrder = ({
