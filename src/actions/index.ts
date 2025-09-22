@@ -3,6 +3,7 @@ import { createAccessToken } from "utils/auth/createAccessToken";
 import { CustomerCreateResponse } from "../../types";
 import { GraphQLClientSingleton } from "../graphql";
 import { createUserMutation } from "../graphql/mutations/createUserMutation";
+import { redirect } from "next/navigation";
 
 export const handleCreateUser = async (formData: FormData) => {
   const formDataObject = Object.fromEntries(formData);
@@ -26,5 +27,16 @@ export const handleCreateUser = async (formData: FormData) => {
       formDataObject.email as string,
       formDataObject.password as string
     );
+  }
+};
+
+export const handleLogin = async (formData: FormData) => {
+  const formDataObject = Object.fromEntries(formData);
+  const accessToken = await createAccessToken(
+    formDataObject.email as string,
+    formDataObject.password as string
+  );
+  if (accessToken) {
+    redirect("/store");
   }
 };

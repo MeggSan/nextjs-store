@@ -170,3 +170,10 @@ export type CustomerAccessTokenCreateResponse = {
     }[];
   };
 };
+
+export interface CustomerNameResponse {
+  customer: {
+    firstName: string;
+    email: string;
+  } | null;
+}
