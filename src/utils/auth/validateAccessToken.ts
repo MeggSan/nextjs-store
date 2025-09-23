@@ -5,7 +5,7 @@ import { CustomerNameResponse } from "../../../types";
 
 export const validateAccessToken = async () => {
   const cookiesStore = cookies();
-  const accessToken = cookiesStore.get("accessToken")?.value;
+  const accessToken = cookiesStore.get("accessToken")?.value || "";
   const graphqlClient = GraphQLClientSingleton.getInstance().getClient();
 
   const { customer } = await graphqlClient.request<CustomerNameResponse>(
