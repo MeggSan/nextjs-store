@@ -177,3 +177,17 @@ export interface CustomerNameResponse {
     email: string;
   } | null;
 }
+
+export interface ErrorPageProps {
+  error: Error;
+  reset: () => void;
+}
+
+export type CartItem = {
+  title: string;
+  price: number | null;
+  quantity: number;
+  id: string;
+  image: string;
+  merchandiseId: string | null;
+};
