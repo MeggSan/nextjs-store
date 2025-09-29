@@ -6,6 +6,8 @@ import {
   getCollections,
 } from "services/shopify/collections";
 
+export const runtime = "edge";
+
 export default async function Categories(props: CategoriesProps) {
   const { categories } = props.params;
   let products: ProductType[] = [];
