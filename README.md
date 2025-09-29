@@ -35,6 +35,10 @@ Make sure you have installed:
 
 `npm run lint`
 
+## Store password for buying
+
+leonti
+
 ## Features
 
 Practice concepts such as:
