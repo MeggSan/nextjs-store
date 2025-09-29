@@ -191,3 +191,40 @@ export type CartItem = {
   image: string;
   merchandiseId: string | null;
 };
+
+export interface OrderLineItem {
+  currentQuantity: number;
+  quantity: number;
+  title: string;
+}
+
+export interface Order {
+  id: string;
+  name: string;
+  orderNumber: number;
+  email: string;
+  phone?: string;
+  processedAt: string;
+  financialStatus: string;
+  fulfillmentStatus: string;
+  lineItems: {
+    edges: {
+      cursor: string;
+      node: OrderLineItem;
+    }[];
+  };
+}
+
+export interface OrdersResponse {
+  customer: {
+    orders: {
+      totalCount: number;
+      edges: { node: Order }[];
+    };
+  };
+}
+
+export interface Edge<T> {
+  cursor?: string; // a veces está, a veces no
+  node: T;
+}

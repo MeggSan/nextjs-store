@@ -4,8 +4,8 @@ import styles from "./NewAccountForm.module.sass";
 import { handleCreateUser } from "actions";
 
 export const NewAccountForm = () => {
-  const [errors, setErrors] = useState<string[]>([]);
-  const [loading, setLoading] = useState<boolean>(false);
+  const [errors] = useState<string[]>([]);
+  const [loading] = useState<boolean>(false);
 
   const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();

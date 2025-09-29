@@ -2,11 +2,16 @@
 
 import path from "path";
 import { fileURLToPath } from "url";
+import bundleAnalyzer from "@next/bundle-analyzer";
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
-const nextConfig = {
+const withBundleAnalyzer = bundleAnalyzer({
+  enabled: process.env.ANALYZE === "true",
+});
+
+const nextConfig = withBundleAnalyzer({
   sassOptions: {
     includePaths: [path.join(__dirname, "src/sass")],
     prependData: `@import "main.sass"`, // we can use all our variables in all files
@@ -19,6 +24,6 @@ const nextConfig = {
       },
     ],
   },
-};
+});
 
 export default nextConfig;
